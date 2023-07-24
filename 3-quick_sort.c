@@ -1,6 +1,6 @@
 #include "sort.h"
 
-/*
+/**
  * quick_sort - sorts an array of integers using the
  * quick sort algorithm
  * @array: array to sort
@@ -17,7 +17,7 @@ void quick_sort(int *array, size_t size)
 }
 
 
-/*
+/**
  * _partition_array - partitions the array into sub-arrays
  * @array: array to partition
  * @low: lower bound of array
@@ -58,7 +58,7 @@ int _partition_array(int *array, int low, int high, size_t size)
 	return (i);
 }
 
-/*
+/**
  * _quicksort - partitions and sorts the array
  * @array: array to sort
  * @low: lower bound of array
@@ -71,11 +71,11 @@ void _quicksort(int *array, int low, int high, size_t size)
 {
 	int pivotIndex;
 
-        if (low < high)
-        {
-                pivotIndex = _partition_array(array, low, high, size);
-                _quicksort(array, low, pivotIndex - 1, size);
+	if (low < high)
+	{
+		pivotIndex = _partition_array(array, low, high, size);
+		_quicksort(array, low, pivotIndex - 1, size);
 		_quicksort(array, pivotIndex + 1, high, size);
-        }
+	}
 
 }

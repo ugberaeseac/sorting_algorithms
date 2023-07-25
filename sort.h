@@ -30,6 +30,8 @@ int _partition_array(int *array, int low, int high, size_t size);
 void merge_sort(int *array, size_t size);
 void _merge(int *array, size_t lb, size_t mid, size_t ub, size_t size);
 void _mergesort(int *array, size_t lb, size_t ub, size_t size);
-void prints(int *array, char *side, size_t lb, size_t ub);
+void _print(int *array, char *side, size_t lb, size_t ub);
+void _arraycpy(int *array, int *sorted, size_t k, size_t ub);
+void insertion_sort_list(listint_t **list);
 
 #endif

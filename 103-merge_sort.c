@@ -22,19 +22,27 @@ void merge_sort(int *array, size_t size)
 
 }
 
-
+/**
+ * _mergesort - recursively divide array
+ * @array: array to sort
+ * @lb: lower bound array
+ * @ub: upper bound array
+ * @size: size of array
+ *
+ * Return: void
+ */
 void _mergesort(int *array, size_t lb, size_t ub, size_t size)
 {
 	size_t mid;
 
 	if (lb < ub)
 	{
-		mid = (lb + ub)/2;
+		mid = (lb + ub) / 2;
 		_mergesort(array, lb, mid, size);
 		_mergesort(array, mid + 1, ub, size);
 		printf("Merging...\n");
-		prints(array, "left", lb, mid);
-		prints(array, "right", mid, ub);
+		_print(array, "left", lb, mid);
+		_print(array, "right", mid, ub);
 		_merge(array, lb, mid, ub, size);
 	}
 
@@ -47,6 +55,7 @@ void _mergesort(int *array, size_t lb, size_t ub, size_t size)
  * @lb: lower bound of array
  * @ub: upper bound of array
  * @mid: mid point of array
+ * @size: size of array
  *
  * Return: void
  */
@@ -55,14 +64,11 @@ void _merge(int *array, size_t lb, size_t mid, size_t ub, size_t size)
 	size_t i, j, k;
 	int *sorted;
 
-	i = lb;
+	i = k = lb;
 	j = mid + 1;
-	k = lb;
-
 	sorted = malloc(sizeof(int) * size);
 	if (sorted == NULL)
 		return;
-
 	while (i <= mid && j <= ub)
 	{
 		if (array[i] <= array[j])
@@ -95,14 +101,36 @@ void _merge(int *array, size_t lb, size_t mid, size_t ub, size_t size)
 			k++;
 		}
 	}
-	prints(sorted, "Done", lb, ub);
-	for (k = lb; k <= ub; k++)
+	_print(sorted, "Done", lb, ub);
+	_arraycpy(array, sorted, k, ub);
+}
+
+/**
+ * _arraycpy - copy the sorted array
+ * @array: original array of integers
+ * @sorted: sorted array
+ * @k: lower bound of array
+ * @ub: upper bound of array
+ *
+ * Return: void
+ */
+void _arraycpy(int *array, int *sorted, size_t k, size_t ub)
+{
+	for (k = 0; k <= ub; k++)
 		array[k] = sorted[k];
-	free(sorted);
 }
 
 
-void prints(int *array, char *side, size_t lb, size_t ub)
+/**
+ * _print - print elements of merged sub arrays
+ * @array: array
+ * @side: two sides of the array
+ * @lb: lower bound of array
+ * @ub: upper bound of array
+ *
+ * Return: void
+ */
+void _print(int *array, char *side, size_t lb, size_t ub)
 {
 	size_t i;
 

@@ -31,5 +31,6 @@ void merge_sort(int *array, size_t size);
 void _merge(int *array, size_t lb, size_t mid, size_t ub, size_t size);
 void _mergesort(int *array, size_t lb, size_t ub, size_t size);
 void prints(int *array, char *side, size_t lb, size_t ub);
+void _merger(int *array, int *sorted, size_t lb, size_t mid, size_t ub, size_t size);
 
 #endif

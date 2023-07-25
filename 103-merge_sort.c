@@ -22,14 +22,22 @@ void merge_sort(int *array, size_t size)
 
 }
 
-
+/**
+ * _mergesort - recursively divide array
+ * @array: array to sort
+ * @lb: lower bound array
+ * @ub: upper bound array
+ * @size: size of array
+ *
+ * Return: void
+ */
 void _mergesort(int *array, size_t lb, size_t ub, size_t size)
 {
 	size_t mid;
 
 	if (lb < ub)
 	{
-		mid = (lb + ub)/2;
+		mid = (lb + ub) / 2;
 		_mergesort(array, lb, mid, size);
 		_mergesort(array, mid + 1, ub, size);
 		printf("Merging...\n");
@@ -47,22 +55,39 @@ void _mergesort(int *array, size_t lb, size_t ub, size_t size)
  * @lb: lower bound of array
  * @ub: upper bound of array
  * @mid: mid point of array
+ * @size: size of array
  *
  * Return: void
  */
 void _merge(int *array, size_t lb, size_t mid, size_t ub, size_t size)
 {
 	size_t i, j, k;
-	int *sorted;
 
 	i = lb;
 	j = mid + 1;
 	k = lb;
 
+	_merger(array, lb, mid, ub, size);
+}
+
+
+/**
+ * _merger - merges the sub arrays
+ * @array: array
+ * @lb: lower bound of array
+ * @ub: upper bound of array
+ * @mid: mid index of array
+ * @size: size of array
+ *
+ * Return: void
+ */
+void _merger(int *array, size_t lb, size_t mid, size_t ub, size_t size)
+{
+	int *sorted;
+
 	sorted = malloc(sizeof(int) * size);
 	if (sorted == NULL)
 		return;
-
 	while (i <= mid && j <= ub)
 	{
 		if (array[i] <= array[j])
@@ -101,7 +126,15 @@ void _merge(int *array, size_t lb, size_t mid, size_t ub, size_t size)
 	free(sorted);
 }
 
-
+/**
+ * prints - print elements of merged sub arrays
+ * @array: array
+ * @side: two sides of the array
+ * @lb: lower bound of array
+ * @ub: upper bound of array
+ *
+ * Return: void
+ */
 void prints(int *array, char *side, size_t lb, size_t ub)
 {
 	size_t i;
